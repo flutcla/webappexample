@@ -13,6 +13,7 @@ const login = async (email, password) => {
     user.value = response.user;
   } catch (error) {
     console.error(error);
+    throw error;
   }
 };
 
@@ -22,6 +23,7 @@ const logout = async () => {
     user.value = null;
   } catch (error) {
     console.error(error);
+    throw error;
   }
 };
 
@@ -30,7 +32,8 @@ const signUp = async (email, password) => {
     const response = await firebase.auth().createUserWithEmailAndPassword(email, password);
       user.value = response.user;
     } catch (error) {
-      console.error(error);
+    console.error(error);
+    throw error;
     }
 };
 

@@ -8,6 +8,7 @@
           <q-input outlined v-model="password" label="パスワード" type="password" />
           <q-btn label="ログイン" type="submit" :disable="!email || !password" />
         </q-form>
+        <p v-if="error" class="error-message">{{ error }}</p>
       </q-card-section>
       <q-card-section>
         <p>
@@ -20,7 +21,7 @@
 
 
 <script>
-import * as store from "../store";
+import * as store from '../store';
 
 export default {
   name: "Login",
@@ -28,13 +29,18 @@ export default {
     return {
       email: "",
       password: "",
+      error: null,
     };
   },
   methods: {
     async submit() {
-      await store.login(this.email, this.password);
-      if (store.user.value) {
-        this.$router.push("/");
+      try {
+        await store.login(this.email, this.password);
+        if (store.user.value) {
+          this.$router.push("/");
+        }
+      } catch (err) {
+        this.error = "ログインに失敗しました。メールアドレスまたはパスワードが間違っています。";
       }
     },
   },

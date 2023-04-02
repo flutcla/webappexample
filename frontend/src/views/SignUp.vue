@@ -1,13 +1,18 @@
 <template>
   <div>
-    <h2>Sign Up</h2>
-    <q-form @submit.prevent="submit">
-      <q-input outlined v-model="email" label="Email" type="email" />
-      <q-input outlined v-model="password" label="Password" type="password" />
-      <q-btn label="Sign Up" type="submit" :disable="!email || !password" />
-    </q-form>
+    <q-card class="form-card">
+      <q-card-section>
+        <div class="text-h6">新規登録</div>
+        <q-form @submit.prevent="submit">
+          <q-input outlined v-model="email" label="メールアドレス" type="email" />
+          <q-input outlined v-model="password" label="パスワード" type="password" />
+          <q-btn label="登録" type="submit" :disable="!email || !password" />
+        </q-form>
+      </q-card-section>
+    </q-card>
   </div>
 </template>
+
 
 <script>
 import * as store from "../store";

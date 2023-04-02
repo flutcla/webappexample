@@ -1,16 +1,23 @@
 <template>
   <div>
-    <h2>Login</h2>
-    <q-form @submit.prevent="submit">
-      <q-input outlined v-model="email" label="Email" type="email" />
-      <q-input outlined v-model="password" label="Password" type="password" />
-      <q-btn label="Login" type="submit" :disable="!email || !password" />
-    </q-form>
-    <p>
-      Don't have an account yet? <router-link to="/signup">Sign Up</router-link>
-    </p>
+    <q-card class="form-card">
+      <q-card-section>
+        <div class="text-h6">ログイン</div>
+        <q-form @submit.prevent="submit">
+          <q-input outlined v-model="email" label="メールアドレス" type="email" />
+          <q-input outlined v-model="password" label="パスワード" type="password" />
+          <q-btn label="ログイン" type="submit" :disable="!email || !password" />
+        </q-form>
+      </q-card-section>
+      <q-card-section>
+        <p>
+          <router-link to="/signup">新規登録</router-link>
+        </p>
+      </q-card-section>
+    </q-card>
   </div>
 </template>
+
 
 <script>
 import * as store from "../store";
